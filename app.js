@@ -30,9 +30,10 @@ io.on('connection', client => {
 //
 
 
-usually this is where we try to connect to our DB.
+// usually this is where we try to connect to our DB.
 
 server.listen(process.env.PORT || 8000)
+
 
 
 
