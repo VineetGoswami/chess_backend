@@ -1,31 +1,57 @@
-const express = require('express')
-const http = require('http')
-const socketio = require('socket.io')
-const gameLogic = require('./game-logic')
-const app = express()
+// const express = require('express')
+// const http = require('http')
+// const socketio = require('socket.io')
+// const gameLogic = require('./game-logic')
+// const app = express()
 
-/**
- * Backend flow:
- * - check to see if the game ID encoded in the URL belongs to a valid game session in progress. 
- * - if yes, join the client to that game. 
- * - else, create a new game instance. 
- * - '/' path should lead to a new game instance. 
- * - '/game/:gameid' path should first search for a game instance, then join it. Otherwise, throw 404 error.  
- */
+// /**
+//  * Backend flow:
+//  * - check to see if the game ID encoded in the URL belongs to a valid game session in progress. 
+//  * - if yes, join the client to that game. 
+//  * - else, create a new game instance. 
+//  * - '/' path should lead to a new game instance. 
+//  * - '/game/:gameid' path should first search for a game instance, then join it. Otherwise, throw 404 error.  
+//  */
 
 
-const server = http.createServer(app)
-const io = socketio(server)
+// const server = http.createServer(app)
+// const io = socketio(server)
 
-// get the gameID encoded in the URL. 
-// check to see if that gameID matches with all the games currently in session. 
-// join the existing game session. 
-// create a new session.  
-// run when client connects
+// // get the gameID encoded in the URL. 
+// // check to see if that gameID matches with all the games currently in session. 
+// // join the existing game session. 
+// // create a new session.  
+// // run when client connects
 
-io.on('connection', client => {
-    gameLogic.initializeGame(io, client)
+// io.on('connection', client => {
+//     gameLogic.initializeGame(io, client)
+// })
+
+// //
+
+
+usually this is where we try to connect to our DB.
+
+// server.listen(process.env.PORT || 8000)
+
+
+
+    import io from 'socket.io-client'
+
+// Ensure this has the full protocol prefix
+const URL = 'https://chessbackend-production.up.railway.app' 
+
+const socket = io(URL)
+
+var mySocketId
+ 
+
+socket.on("createNewGame", statusUpdate => {
+    console.log("A new game has been created! Username: " + statusUpdate.userName + ", Game id: " + statusUpdate.gameId + " Socket id: " + statusUpdate.mySocketId)
+    mySocketId = statusUpdate.mySocketId
 })
 
-// usually this is where we try to connect to our DB.
-server.listen(process.env.PORT || 8000)
+export {
+    socket,
+    mySocketId
+}
