@@ -8,7 +8,10 @@
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
- 
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProjectsByJackHe/multiplayer-chess-game-backend.git"
+  },
   "dependencies": {
     "express": "4.17.1",
     "socket.io": "2.3.0"
@@ -16,7 +19,10 @@
   "devDependencies": {
     "nodemon": "2.0.4"
   },
- 
-  "license": "MIT"
- 
+  "author": "Jack He",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ProjectsByJackHe/multiplayer-chess-game-backend/issues"
+  },
+  "homepage": "https://github.com/ProjectsByJackHe/multiplayer-chess-game-backend#readme"
 }
